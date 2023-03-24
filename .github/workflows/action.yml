@@ -6,8 +6,15 @@ on:
   workflow_dispatch:
 
 jobs:
+
   my-job:
     runs-on: ubuntu-latest
     steps:
+      # Make sure you put workflow kit action on top of all the steps 
+      - name: Collect Workflow Telemetry
+        uses: runforesight/foresight-workflow-kit-action@v1
+        if: ${{ always() }}
+        with:
+          api_key: 2b120463-4d10-45d4-9bcd-880061de31b1
       - name: my-step
         run: echo "Hello World!"
